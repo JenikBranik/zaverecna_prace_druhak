@@ -1,19 +1,32 @@
 package gameFunctions;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class generatePairs {
 
+    ArrayList<String> generatedPairs = new ArrayList<>();
 
-    public List<String> generatePairs(int numberOfPairs) {
-        List<String> motifs = new ArrayList<>();
-        char currentMotif = 'A';
-        for (int i = 0; i < numberOfPairs; i++) {
-            motifs.add(String.valueOf(currentMotif));
-            motifs.add(String.valueOf(currentMotif));
-            currentMotif++;
+    public void setGeneratedPairs(int countOfPairs) {
+        char startChar = 65;
+        char endChar = 121;
+        int counter = 0;
+        String returnChar;
+        for (int i = 0; i < countOfPairs; i++) {
+            char currentChar = (char) (startChar + i);
+            returnChar = String.valueOf(currentChar);
+            if (currentChar > 90) {
+                currentChar += 6;
+                returnChar = String.valueOf(currentChar);
+                if (currentChar > endChar) {
+                    char add = (char) (startChar + counter);
+                    returnChar = String.valueOf(startChar) + String.valueOf(add);
+                    counter++;
+                }
+            }
+            generatedPairs.add(returnChar);
         }
-        return motifs;
+        for (int i = 0; i < countOfPairs; i++) {
+            System.out.print(generatedPairs.get(i));
+        }
     }
 }

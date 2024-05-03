@@ -15,8 +15,7 @@ public class AdderCards {
         System.out.print(">> ");
         int countOfPairs = sc.nextInt();
         generatePairs gP = new generatePairs();
-        List<String> cards = gP.generatePairs(countOfPairs);
-        Collections.shuffle(cards);
+        gP.setGeneratedPairs(countOfPairs);
         addCard(countOfPairs);
         return countOfPairs;
     }

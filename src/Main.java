@@ -1,9 +1,12 @@
 import command.console.Console;
 import gameField.AdderCards;
+import gameFunctions.generatePairs;
+
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        AdderCards ac = new AdderCards();
-        ac.numberOfPairs();
+        AdderCards ad = new AdderCards();
+        ad.numberOfPairs();
     }
 }

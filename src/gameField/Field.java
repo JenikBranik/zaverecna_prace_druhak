@@ -2,6 +2,7 @@ package gameField;
 
 public class Field {
     public static final String space = " ";
+    public static final String nextSymbol = "~";
 
 
     public void showField(int addCard) {
@@ -21,13 +22,11 @@ public class Field {
                 System.out.print(row + 1 + space.repeat(3));
             }
             for (int i = 0; i < 4; i++) {
-                System.out.print("~" + space.repeat(3));
+                System.out.print(nextSymbol + space.repeat(3));
             }
 
             System.out.println();
             System.out.println();
-
-
         }
         if (addCard % 2 != 0) {
 
@@ -36,8 +35,8 @@ public class Field {
             } else {
                 System.out.print(addCard / 2 + 1 + space.repeat(3));
             }
-            System.out.print("~" + space.repeat(3));
-            System.out.print("~" + space.repeat(3));
+            System.out.print(nextSymbol + space.repeat(3));
+            System.out.print(nextSymbol + space.repeat(3));
         }
     }
 }
