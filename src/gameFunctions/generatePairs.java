@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class generatePairs {
 
-    ArrayList<String> generatedPairs = new ArrayList<>();
+     ArrayList<Symbol> generatedPairs = new ArrayList<>();
 
-    public void setGeneratedPairs(int countOfPairs) {
+    public ArrayList<Symbol> setGeneratedPairs(int countOfPairs) {
         char startChar = 65;
         char endChar = 121;
         int counter = 0;
@@ -23,10 +23,14 @@ public class generatePairs {
                     counter++;
                 }
             }
-            generatedPairs.add(returnChar);
+            Symbol s = new Symbol(returnChar,false);
+            generatedPairs.add(s);
         }
         for (int i = 0; i < countOfPairs; i++) {
-            System.out.print(generatedPairs.get(i));
+            System.out.print(generatedPairs.get(i).symbol + " ");
+            System.out.println(generatedPairs.get(i).isGuessed);
         }
+        return generatedPairs;
     }
+
 }

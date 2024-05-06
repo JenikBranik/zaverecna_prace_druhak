@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        AdderCards ad = new AdderCards();
-        ad.numberOfPairs();
+        generatePairs gP = new generatePairs();
+        gP.setGeneratedPairs(10);
     }
 }
