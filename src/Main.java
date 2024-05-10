@@ -1,12 +1,17 @@
 import command.console.Console;
 import gameField.AdderCards;
-import gameFunctions.generatePairs;
+import gameFunctions.addingPairs;
 
 import java.util.Scanner;
 
+
 public class Main {
     public static void main(String[] args) {
-        generatePairs gP = new generatePairs();
-        gP.setGeneratedPairs(10);
+       // AdderCards ad = new AdderCards();
+        //ad.numberOfPairs();
+
+        addingPairs aP = new addingPairs();
+        aP.setGenPairs(3);
+
     }
 }

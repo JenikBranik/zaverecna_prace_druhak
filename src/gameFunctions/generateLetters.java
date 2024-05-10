@@ -2,7 +2,7 @@ package gameFunctions;
 
 import java.util.ArrayList;
 
-public class generatePairs {
+public class generateLetters {
 
      ArrayList<Symbol> generatedPairs = new ArrayList<>();
 
@@ -25,10 +25,6 @@ public class generatePairs {
             }
             Symbol s = new Symbol(returnChar,false);
             generatedPairs.add(s);
-        }
-        for (int i = 0; i < countOfPairs; i++) {
-            System.out.print(generatedPairs.get(i).symbol + " ");
-            System.out.println(generatedPairs.get(i).isGuessed);
         }
         return generatedPairs;
     }
