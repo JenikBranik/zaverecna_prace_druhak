@@ -28,7 +28,8 @@ public class addingPairs {
             System.out.println(column);
             System.out.println(row);
 
-            for (int i = 1; i <= row; i++) {
+            if (fullRow) {
+                for (int i = 1; i <= row; i++) {
 
                     for (int j = 1; j <= column; j++) {
                         int random = r.nextInt(gL.generatedPairs.size());
@@ -38,10 +39,16 @@ public class addingPairs {
                         Pairs.add(symbol);
                         System.out.println(genPairs.get(index).symbol + " " + genPairs.get(index).col + " " + genPairs.get(index).row + " " + genPairs.get(index).isGuessed);
                         index++;
-
                     }
-
-
+                }
+            } else if (countOfPairs == 1) {
+                for (int i = 1; i <= 2; i++) {
+                    String symbol = gL.generatedPairs.get(0).symbol;
+                    Pairs p = new Pairs(symbol, gL.generatedPairs.get(0).isGuessed,i,1);
+                    genPairs.add(p);
+                    System.out.println(genPairs.get(index).symbol + " " + genPairs.get(index).col + " " + genPairs.get(index).row + " " + genPairs.get(index).isGuessed);
+                    index++;
+                }
             }
 
         } catch (IllegalArgumentException e) {

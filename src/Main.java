@@ -11,7 +11,7 @@ public class Main {
         //ad.numberOfPairs();
 
         addingPairs aP = new addingPairs();
-        aP.setGenPairs(3);
+        aP.setGenPairs(1);
 
     }
 }
