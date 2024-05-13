@@ -20,7 +20,8 @@ public class AdderCards {
 
     public String addCard(int cOP) {
         Field f = new Field();
-        f.showField(cOP);
+        addingPairs aP = new addingPairs();
+        f.showField(cOP, aP.genPairs);
         return "";
     }
 }

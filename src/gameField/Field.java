@@ -1,15 +1,26 @@
 package gameField;
 
+import gameFunctions.Pairs;
 import gameFunctions.addingPairs;
+import gameFunctions.checkerPairs;
+import gameFunctions.guessPosition;
+
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Field {
     public static final String space = " ";
-    public String nextSymbol = "~";
+    checkerPairs cp = new checkerPairs();
 
 
-    public void showField(int addCard) {
+
+    public void showField(int addCard, ArrayList<Pairs> genPairs) {
+
+        Scanner scanner = new Scanner(System.in);
         addingPairs aP = new addingPairs();
         aP.setGenPairs(addCard);
+
+
         for (int column = 0; column < 5; column++) {
             if (column == 0) {
                 System.out.print(space.repeat(4));
@@ -26,7 +37,6 @@ public class Field {
                 System.out.print(row + 1 + space.repeat(3));
             }
             for (int i = 0; i < 4; i++) {
-                nextSymbol = aP.genPairs.get(i).getSymbol();
                 System.out.print(nextSymbol + space.repeat(3));
             }
 
