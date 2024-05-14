@@ -10,15 +10,24 @@ import java.util.Scanner;
 
 public class Field {
     public static final String space = " ";
+    String nextSymbol = "~";
     checkerPairs cp = new checkerPairs();
+    addingPairs aP = new addingPairs();
+    boolean[][] odkrytePozice;  // Dvourozměrné pole pro sledování odkrytých pozic
 
 
+    public void generateField(int countPairs) {
+        aP.setGenPairs(countPairs); // Inicializace pole odkrytých pozic
+    }
 
-    public void showField(int addCard, ArrayList<Pairs> genPairs) {
+
+    public void showField(int addCard) {
 
         Scanner scanner = new Scanner(System.in);
-        addingPairs aP = new addingPairs();
-        aP.setGenPairs(addCard);
+        cp.takeGuess();
+        int guessedRow = cp.rowTG();
+        int guessedCol = cp.colTG();
+        odkrytePozice[guessedRow][guessedCol] = true; // Nastavení aktuální pozice jako odkryté
 
 
         for (int column = 0; column < 5; column++) {
@@ -30,14 +39,18 @@ public class Field {
         }
         System.out.println();
         System.out.println();
-        for (int row = 0; row < addCard / 2; row++) {
+        for (int row = 1; row <= addCard / 2; row++) {
             if (row >= 10) {
-                System.out.print(row + 1 + space.repeat(2));
+                System.out.print(row + space.repeat(2));
             } else {
-                System.out.print(row + 1 + space.repeat(3));
+                System.out.print(row + space.repeat(3));
             }
-            for (int i = 0; i < 4; i++) {
+            for (int col = 1; col <= 4; col++) {
+                if (odkrytePozice[row][col]) {
+                    nextSymbol = cp.symbol(aP.genPairs); // Zobrazení symbolu pokud je pozice odkrytá
+                }
                 System.out.print(nextSymbol + space.repeat(3));
+                nextSymbol = "~";
             }
 
             System.out.println();

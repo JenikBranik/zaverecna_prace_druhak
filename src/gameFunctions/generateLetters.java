@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class generateLetters {
 
-     ArrayList<Symbol> generatedPairs = new ArrayList<>();
+    ArrayList<Symbol> generatedPairs = new ArrayList<>();
 
     public ArrayList<Symbol> setGeneratedPairs(int countOfPairs) {
         char startChar = 65;
@@ -23,7 +23,7 @@ public class generateLetters {
                     counter++;
                 }
             }
-            Symbol s = new Symbol(returnChar,false);
+            Symbol s = new Symbol(returnChar, false);
             generatedPairs.add(s);
         }
         return generatedPairs;

@@ -20,8 +20,12 @@ public class AdderCards {
 
     public String addCard(int cOP) {
         Field f = new Field();
-        addingPairs aP = new addingPairs();
-        f.showField(cOP, aP.genPairs);
+        f.generateField(cOP);
+        for (int i = 0; i < 5; i++) {
+
+            f.showField(cOP);
+        }
         return "";
     }
 }
+

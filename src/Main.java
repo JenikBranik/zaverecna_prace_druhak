@@ -10,6 +10,5 @@ public class Main {
     public static void main(String[] args) {
         AdderCards ad = new AdderCards();
         ad.numberOfPairs();
-
     }
 }

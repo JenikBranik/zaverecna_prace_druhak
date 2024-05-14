@@ -33,7 +33,7 @@ public class addingPairs {
                         String symbol = gL.generatedPairs.get(random).symbol;
                         Pairs p = new Pairs(symbol, gL.generatedPairs.get(random).isGuessed, i, j);
                         for (int k = 0; k < Pairs.size(); k++) {
-                            if (Pairs.get(k).equals(symbol)){
+                            if (Pairs.get(k).equals(symbol)) {
                                 gL.generatedPairs.remove(random);
                             }
                         }
@@ -52,13 +52,13 @@ public class addingPairs {
                     index++;
                 }
             } else {
-                for (int i = 1; i <= row-1; i++) {
+                for (int i = 1; i <= row - 1; i++) {
                     for (int j = 1; j <= column; j++) {
                         int random = r.nextInt(gL.generatedPairs.size());
                         String symbol = gL.generatedPairs.get(random).symbol;
                         Pairs p = new Pairs(symbol, gL.generatedPairs.get(random).isGuessed, i, j);
                         for (int k = 0; k < Pairs.size(); k++) {
-                            if (Pairs.get(k).equals(symbol)){
+                            if (Pairs.get(k).equals(symbol)) {
                                 gL.generatedPairs.remove(random);
                             }
                         }
@@ -73,7 +73,7 @@ public class addingPairs {
                     String symbol = gL.generatedPairs.get(random).symbol;
                     Pairs p = new Pairs(symbol, gL.generatedPairs.get(random).isGuessed, row, i);
                     for (int k = 0; k < Pairs.size(); k++) {
-                        if (Pairs.get(k).equals(symbol)){
+                        if (Pairs.get(k).equals(symbol)) {
                             gL.generatedPairs.remove(random);
                         }
                     }
