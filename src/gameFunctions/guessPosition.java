@@ -1,8 +1,8 @@
 package gameFunctions;
 
 public class guessPosition {
-    int row;
-    int column;
+    public int row;
+    public int column;
 
     public guessPosition(int row, int column) {
         this.row = row;

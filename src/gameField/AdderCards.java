@@ -1,15 +1,10 @@
 package gameField;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
-
-import gameFunctions.*;
 
 public class AdderCards {
 
     public int numberOfPairs() {
-
         Scanner sc = new Scanner(System.in);
         System.out.println(">> Zadej počet dvojic, který chceš vygenerovat");
         System.out.print(">> ");
@@ -22,10 +17,8 @@ public class AdderCards {
         Field f = new Field();
         f.generateField(cOP);
         for (int i = 0; i < 5; i++) {
-
-            f.showField(cOP);
+            f.showField();
         }
         return "";
     }
 }
-

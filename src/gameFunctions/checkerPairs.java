@@ -19,7 +19,6 @@ public class checkerPairs {
         return false;
     }
 
-
     public String symbol(ArrayList<Pairs> genP) {
         for (int i = 0; i < genP.size(); i++) {
             if (genP.get(i).row == rowTG() && genP.get(i).col == colTG()) {
@@ -43,7 +42,6 @@ public class checkerPairs {
     public int rowTG() {
         return tG.get(0).row;
     }
-
 
     public int colTG() {
         return tG.get(0).column;
