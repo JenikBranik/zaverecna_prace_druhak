@@ -24,4 +24,12 @@ public class Symbol {
     public void setGuessed(boolean guessed) {
         isGuessed = guessed;
     }
+
+    public void reveal() {
+        isGuessed = true;
+    }
+
+    public void hide() {
+        isGuessed = false;
+    }
 }
