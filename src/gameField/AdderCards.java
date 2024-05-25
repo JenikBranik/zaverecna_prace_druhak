@@ -14,11 +14,10 @@ public class AdderCards {
     }
 
     public String addCard(int cOP) {
+        generateField gf = new generateField();
         Field f = new Field();
+        gf.generateField(cOP);
         f.generateField(cOP);
-        for (int i = 0; i < 5; i++) {
-            f.showField();
-        }
         return "";
     }
 }
