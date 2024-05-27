@@ -8,4 +8,22 @@ public class guessPosition {
         this.row = row;
         this.column = column;
     }
+
+    // setter
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
+    }
+
+    //getter
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
 }

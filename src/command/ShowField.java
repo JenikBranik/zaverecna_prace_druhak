@@ -4,7 +4,7 @@ import gameField.Field;
 
 public class ShowField extends Command {
 
-    Field f = new Field();
+     Field f = new Field();
 
     public String execute() {
         //f.showField();

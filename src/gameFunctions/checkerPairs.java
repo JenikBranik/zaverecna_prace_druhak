@@ -7,26 +7,6 @@ public class checkerPairs {
     addingPairs aP = new addingPairs();
     ArrayList<guessPosition> tG = new ArrayList<>();
 
-    public boolean checker(String symbol1, String symbol2, ArrayList<Pairs> genP) {
-        if (symbol1.equals(symbol2)){
-            for (int i = 0; i < genP.size(); i++) {
-                if (genP.get(i).getSymbol().equals(symbol1)){
-                    genP.get(i).setGuessed(true);
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-
-    public String symbol(ArrayList<Pairs> genP) {
-        for (int i = 0; i < genP.size(); i++) {
-            if (genP.get(i).row == rowTG() && genP.get(i).col == colTG()) {
-                return genP.get(i).symbol;
-            }
-        }
-        return null;
-    }
 
     public ArrayList<guessPosition> takeGuess() {
         Scanner scanner = new Scanner(System.in);

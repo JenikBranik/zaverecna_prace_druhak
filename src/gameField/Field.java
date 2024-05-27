@@ -1,99 +1,91 @@
 package gameField;
 
-import gameFunctions.Pairs;
 import gameFunctions.addingPairs;
 import gameFunctions.checkerPairs;
+import gameFunctions.guessPosition;
 
-import java.util.Scanner;
 
 public class Field {
     public static final String space = " ";
-    checkerPairs cp = new checkerPairs();
-    addingPairs aP = new addingPairs();
-    boolean[][] odkrytePozice;  // Dvourozměrné pole pro sledování odkrytých pozic
-    int[][] pocitadloOdkryti;   // Dvourozměrné pole pro sledování počtu odkrytí pozic
-    int addCard;
-    String nextSymbol;
-    int firstGuessRow, firstGuessCol;
+    private checkerPairs cp = new checkerPairs();
+    private addingPairs aP = new addingPairs();
+    private CheckPairOnField CPOF = new CheckPairOnField(aP);
+    private boolean[][] odkrytePozice;
+    private int addCard;
+    private String nextSymbol;
+    private guessPosition firstGuess = null;
 
     public void generateField(int countPairs) {
-        aP.setGenPairs(countPairs); // Inicializace generovaných párů
-        this.addCard = countPairs * 2; // Aktualizace počtu karet
-        int rows = (addCard + 3) / 4; // Počet řádků (zaokrouhleno nahoru)
-        odkrytePozice = new boolean[rows + 1][5]; // Inicializace pole odkrytých pozic
-        pocitadloOdkryti = new int[rows + 1][5];  // Inicializace pole počtu odkrytí
+        aP.setGenPairs(countPairs);
+        this.addCard = countPairs * 2;
+        int rows = (addCard + 3) / 4;
+        odkrytePozice = new boolean[rows + 1][5];
     }
 
     public void showField() {
         try {
-            Scanner scanner = new Scanner(System.in);
             cp.takeGuess();
             int guessedRow = cp.rowTG();
             int guessedCol = cp.colTG();
-            odkrytePozice[guessedRow][guessedCol] = true; // Nastavení aktuální pozice jako odkryté
+            guessPosition currentGuess = new guessPosition(guessedRow, guessedCol);
 
-            if (firstGuessRow == 0) {
-                firstGuessRow = guessedRow;
-                firstGuessCol = guessedCol;
+            if (odkrytePozice[guessedRow][guessedCol]) {
+                System.out.println("Tato pozice byla již uhodnutá, vyberte prosím jinou.");
+                return;
+            }
+
+            odkrytePozice[guessedRow][guessedCol] = true;
+
+            if (firstGuess == null) {
+                firstGuess = currentGuess;
             } else {
-                // Zde voláme metodu checkPair a předáváme jí souřadnice obou symbolů
-                if (!checkPair(firstGuessRow, firstGuessCol, guessedRow, guessedCol)) {
-                    // Pokud symboly nejsou shodné, zobrazení hracího pole zůstane nezměněno
-                    odkrytePozice[firstGuessRow][firstGuessCol] = false;
+                if (!CPOF.checkPair(firstGuess, currentGuess)) {
+                    showCurrentField();
+                    for (int i = 0; i < 4; i++) {
+                        System.out.println(" ");
+                    }
+                    odkrytePozice[firstGuess.getRow()][firstGuess.getColumn()] = false;
                     odkrytePozice[guessedRow][guessedCol] = false;
                 }
-                // Resetujeme první tip
-                firstGuessRow = 0;
-                firstGuessCol = 0;
+                firstGuess = null;
             }
 
-            for (int column = 0; column < 5; column++) {
-                if (column == 0) {
-                    System.out.print(space.repeat(4));
-                } else {
-                    System.out.print(column + space.repeat(3));
-                }
-            }
-            System.out.println();
-            System.out.println();
+            showCurrentField();
 
-            for (int row = 1; row <= (addCard + 3) / 4; row++) {
-                if (row >= 10) {
-                    System.out.print(row + space.repeat(2));
-                } else {
-                    System.out.print(row + space.repeat(3));
-                }
-                for (int col = 1; col <= 4; col++) {
-                    if ((row - 1) * 4 + col > addCard) break; // Pokud přesáhne počet karet
-                    if (odkrytePozice[row][col]) {
-                        nextSymbol = getSymbolAt(row, col); // Zobrazení symbolu pokud je pozice odkrytá
-                    } else {
-                        nextSymbol = "~";
-                    }
-                    System.out.print(nextSymbol + space.repeat(3));
-                }
-
-                System.out.println();
-                System.out.println();
-            }
         } catch (Exception e) {
             System.out.println("Došlo k chybě při zobrazování hracího pole: " + e.getMessage());
         }
     }
 
-    private String getSymbolAt(int row, int col) {
-        for (Pairs pair : aP.genPairs) {
-            if (pair.getRow() == row && pair.getCol() == col) {
-                return pair.getSymbol();
+    private void showCurrentField() {
+        for (int column = 0; column < 5; column++) {
+            if (column == 0) {
+                System.out.print(space.repeat(4));
+            } else {
+                System.out.print(column + space.repeat(3));
             }
         }
-        return "~";
-    }
+        System.out.println();
+        System.out.println();
 
-    // Metoda pro kontrolu dvou vybr0aných symbolů
-    private boolean checkPair(int firstRow, int firstCol, int secondRow, int secondCol) {
-        String symbol1 = getSymbolAt(firstRow, firstCol);
-        String symbol2 = getSymbolAt(secondRow, secondCol);
-        return symbol1.equals(symbol2);
+        for (int row = 1; row <= (addCard + 3) / 4; row++) {
+            if (row >= 10) {
+                System.out.print(row + space.repeat(2));
+            } else {
+                System.out.print(row + space.repeat(3));
+            }
+            for (int col = 1; col <= 4; col++) {
+                if ((row - 1) * 4 + col > addCard) break;
+                if (odkrytePozice[row][col]) {
+                    nextSymbol = CPOF.getSymbolAt(new guessPosition(row, col));
+                } else {
+                    nextSymbol = "~";
+                }
+                System.out.print(nextSymbol + space.repeat(3));
+            }
+
+            System.out.println();
+            System.out.println();
+        }
     }
 }
