@@ -3,9 +3,7 @@ package gameField;
 import gameFunctions.Pairs;
 import gameFunctions.addingPairs;
 import gameFunctions.checkerPairs;
-import gameFunctions.guessPosition;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Field {
@@ -16,6 +14,7 @@ public class Field {
     int[][] pocitadloOdkryti;   // Dvourozměrné pole pro sledování počtu odkrytí pozic
     int addCard;
     String nextSymbol;
+    int firstGuessRow, firstGuessCol;
 
     public void generateField(int countPairs) {
         aP.setGenPairs(countPairs); // Inicializace generovaných párů
@@ -32,7 +31,21 @@ public class Field {
             int guessedRow = cp.rowTG();
             int guessedCol = cp.colTG();
             odkrytePozice[guessedRow][guessedCol] = true; // Nastavení aktuální pozice jako odkryté
-            pocitadloOdkryti[guessedRow][guessedCol]++; // Zvýšení počtu odkrytí pro tuto pozici
+
+            if (firstGuessRow == 0) {
+                firstGuessRow = guessedRow;
+                firstGuessCol = guessedCol;
+            } else {
+                // Zde voláme metodu checkPair a předáváme jí souřadnice obou symbolů
+                if (!checkPair(firstGuessRow, firstGuessCol, guessedRow, guessedCol)) {
+                    // Pokud symboly nejsou shodné, zobrazení hracího pole zůstane nezměněno
+                    odkrytePozice[firstGuessRow][firstGuessCol] = false;
+                    odkrytePozice[guessedRow][guessedCol] = false;
+                }
+                // Resetujeme první tip
+                firstGuessRow = 0;
+                firstGuessCol = 0;
+            }
 
             for (int column = 0; column < 5; column++) {
                 if (column == 0) {
@@ -52,7 +65,7 @@ public class Field {
                 }
                 for (int col = 1; col <= 4; col++) {
                     if ((row - 1) * 4 + col > addCard) break; // Pokud přesáhne počet karet
-                    if (odkrytePozice[row][col] && pocitadloOdkryti[row][col] < 3) {
+                    if (odkrytePozice[row][col]) {
                         nextSymbol = getSymbolAt(row, col); // Zobrazení symbolu pokud je pozice odkrytá
                     } else {
                         nextSymbol = "~";
@@ -77,12 +90,10 @@ public class Field {
         return "~";
     }
 
-    private boolean isGuessed(ArrayList<Pairs> genPairs, int row, int col) {
-        for (Pairs pair : genPairs) {
-            if (pair.getRow() == row && pair.getCol() == col) {
-                return pair.isGuessed();
-            }
-        }
-        return false;
+    // Metoda pro kontrolu dvou vybr0aných symbolů
+    private boolean checkPair(int firstRow, int firstCol, int secondRow, int secondCol) {
+        String symbol1 = getSymbolAt(firstRow, firstCol);
+        String symbol2 = getSymbolAt(secondRow, secondCol);
+        return symbol1.equals(symbol2);
     }
 }

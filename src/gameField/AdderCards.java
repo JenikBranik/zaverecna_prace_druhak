@@ -18,6 +18,10 @@ public class AdderCards {
         Field f = new Field();
         gf.generateField(cOP);
         f.generateField(cOP);
+        for (int i = 0; i < 7; i++) {
+            f.showField();
+
+        }
         return "";
     }
 }
