@@ -3,7 +3,9 @@ package gameField;
 import gameFunctions.addingPairs;
 import gameFunctions.checkerPairs;
 import gameFunctions.guessPosition;
+import Player.*;
 
+import java.util.ArrayList;
 
 public class Field {
     public static final String space = " ";
@@ -14,12 +16,38 @@ public class Field {
     private int addCard;
     private String nextSymbol;
     private guessPosition firstGuess = null;
+    private ArrayList<Player> players = new ArrayList<>();
+    private int currentPlayerIndex = 0;
+    int guessedPairs = 0;
 
     public void generateField(int countPairs) {
         aP.setGenPairs(countPairs);
         this.addCard = countPairs * 2;
         int rows = (addCard + 3) / 4;
         odkrytePozice = new boolean[rows + 1][5];
+    }
+
+    public void addPlayer(String name) {
+        players.add(new Player(name, players.size() + 1));
+    }
+
+    public Player getCurrentPlayer() {
+        return players.get(currentPlayerIndex);
+    }
+
+    private void nextPlayer() {
+        currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+    }
+
+    public boolean gameContinue() {
+        if (players.isEmpty()) {
+            System.out.println("Hra nemůže začít bez hráčů.");
+            return false;
+        } else if (guessedPairs == addCard / 2) {
+            return false;
+        }
+
+        return true;
     }
 
     public void showField() {
@@ -30,7 +58,7 @@ public class Field {
             guessPosition currentGuess = new guessPosition(guessedRow, guessedCol);
 
             if (odkrytePozice[guessedRow][guessedCol]) {
-                System.out.println("Tato pozice byla již uhodnutá, vyberte prosím jinou.");
+                System.out.println("Tuto pozici již někdo před tebou uhodl, vyber si jinou");
                 return;
             }
 
@@ -46,6 +74,10 @@ public class Field {
                     }
                     odkrytePozice[firstGuess.getRow()][firstGuess.getColumn()] = false;
                     odkrytePozice[guessedRow][guessedCol] = false;
+                    nextPlayer();
+                    System.out.println("Na řadě je: " + getCurrentPlayer().getUsername());
+                }else {
+                    guessedPairs++;
                 }
                 firstGuess = null;
             }
@@ -88,4 +120,5 @@ public class Field {
             System.out.println();
         }
     }
+
 }
