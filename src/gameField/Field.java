@@ -16,7 +16,7 @@ public class Field {
     private int addCard;
     private String nextSymbol;
     private guessPosition firstGuess = null;
-    private ArrayList<Player> players = new ArrayList<>();
+    public ArrayList<Player> players = new ArrayList<>();
     private int currentPlayerIndex = 0;
     int guessedPairs = 0;
 
@@ -78,6 +78,9 @@ public class Field {
                     System.out.println("Na řadě je: " + getCurrentPlayer().getUsername());
                 }else {
                     guessedPairs++;
+                    System.out.println(getCurrentPlayer().getUsername() + " spojil spravne dvojice!");
+                    getCurrentPlayer().setScore(getCurrentPlayer().getScore() + 1);
+                    System.out.println("Tve skore je: " + getCurrentPlayer().getScore());
                 }
                 firstGuess = null;
             }

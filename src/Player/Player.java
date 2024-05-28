@@ -3,12 +3,14 @@ package Player;
 public class Player {
     String username;
     int ID;
+    int score=0;
 
     public Player() {
     }
     public Player(String username, int ID) {
         this.username = username;
         this.ID = ID;
+        this.score=0;
     }
 
     public String getUsername() {
@@ -25,5 +27,12 @@ public class Player {
 
     public void setID(int ID) {
         this.ID = ID;
+    }
+
+    public int getScore(){
+        return score;
+    }
+    public void setScore(int score){
+        this.score=score;
     }
 }
