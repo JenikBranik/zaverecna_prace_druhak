@@ -6,6 +6,7 @@ import gameFunctions.guessPosition;
 import Player.*;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Field {
     public static final String space = " ";
@@ -20,8 +21,8 @@ public class Field {
     private int currentPlayerIndex = 0;
     int guessedPairs = 0;
 
-    public void generateField(int countPairs) {
-        aP.setGenPairs(countPairs);
+    public void generateField(int countPairs, ArrayList<String> customSymbols) {
+        aP.setGenPairs(countPairs, customSymbols); // Použijeme novou metodu s uživatelskými symboly
         this.addCard = countPairs * 2;
         int rows = (addCard + 3) / 4;
         odkrytePozice = new boolean[rows + 1][5];
@@ -76,11 +77,11 @@ public class Field {
                     odkrytePozice[guessedRow][guessedCol] = false;
                     nextPlayer();
                     System.out.println("Na řadě je: " + getCurrentPlayer().getUsername());
-                }else {
+                } else {
                     guessedPairs++;
-                    System.out.println(getCurrentPlayer().getUsername() + " spojil spravne dvojice!");
+                    System.out.println(getCurrentPlayer().getUsername() + " spojil správné dvojice!");
                     getCurrentPlayer().setScore(getCurrentPlayer().getScore() + 1);
-                    System.out.println("Tve skore je: " + getCurrentPlayer().getScore());
+                    System.out.println("Tvé skóre je: " + getCurrentPlayer().getScore());
                 }
                 firstGuess = null;
             }
@@ -123,5 +124,4 @@ public class Field {
             System.out.println();
         }
     }
-
 }

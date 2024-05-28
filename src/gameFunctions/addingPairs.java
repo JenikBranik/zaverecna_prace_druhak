@@ -8,7 +8,7 @@ public class addingPairs {
     public ArrayList<Pairs> genPairs = new ArrayList<>();
     public ArrayList<String> Pairs = new ArrayList<>();
 
-    public void setGenPairs(int countOfPairs) {
+    public void setGenPairs(int countOfPairs, ArrayList<String> customSymbols) {
         int pairs = countOfPairs * 2;
         int row;
         int column = 4;
@@ -16,7 +16,14 @@ public class addingPairs {
         Random r = new Random();
         int index = 0;
         generateLetters gL = new generateLetters();
-        gL.setGeneratedPairs(countOfPairs);
+
+        // Přidáme vlastní symboly
+        gL.addCustomSymbols(customSymbols);
+
+        // Generujeme zbývající páry
+        int remainingPairs = countOfPairs - customSymbols.size();
+        gL.setGeneratedPairs(remainingPairs);
+
         try {
             if (pairs % 4 != 0) {
                 row = (pairs / 4) + 1;
@@ -29,6 +36,7 @@ public class addingPairs {
             if (fullRow) {
                 for (int i = 1; i <= row; i++) {
                     for (int j = 1; j <= column; j++) {
+                        if (index >= pairs) break;
                         int random = r.nextInt(gL.generatedPairs.size());
                         String symbol = gL.generatedPairs.get(random).symbol;
                         Pairs p = new Pairs(symbol, gL.generatedPairs.get(random).isGuessed, i, j);
@@ -54,6 +62,7 @@ public class addingPairs {
             } else {
                 for (int i = 1; i <= row - 1; i++) {
                     for (int j = 1; j <= column; j++) {
+                        if (index >= pairs) break;
                         int random = r.nextInt(gL.generatedPairs.size());
                         String symbol = gL.generatedPairs.get(random).symbol;
                         Pairs p = new Pairs(symbol, gL.generatedPairs.get(random).isGuessed, i, j);
@@ -69,6 +78,7 @@ public class addingPairs {
                     }
                 }
                 for (int i = 1; i <= 2; i++) {
+                    if (index >= pairs) break;
                     int random = r.nextInt(gL.generatedPairs.size());
                     String symbol = gL.generatedPairs.get(random).symbol;
                     Pairs p = new Pairs(symbol, gL.generatedPairs.get(random).isGuessed, row, i);

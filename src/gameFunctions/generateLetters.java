@@ -29,4 +29,10 @@ public class generateLetters {
         return generatedPairs;
     }
 
+    public void addCustomSymbols(ArrayList<String> customSymbols) {
+        for (String symbol : customSymbols) {
+            Symbol s = new Symbol(symbol, false);
+            generatedPairs.add(s);
+        }
+    }
 }

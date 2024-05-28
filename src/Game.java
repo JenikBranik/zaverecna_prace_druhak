@@ -2,6 +2,7 @@ import Player.Player;
 import gameField.Field;
 import Player.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
@@ -20,22 +21,38 @@ public class Game {
         }
 
         // Vygenerovat hrací pole
-        System.out.println("Kolik párů chceš vytvoři? ");
-        field.generateField(sc.nextInt());
+        System.out.println("Kolik párů chceš vytvořit?");
+        int countOfPairs = sc.nextInt();
+        sc.nextLine(); // Clear the newline character
+
+        // Zadat vlastní symboly
+        ArrayList<String> customSymbols = new ArrayList<>();
+        System.out.println("Kolik vlastních symbolů chceš přidat?");
+        int customCount = sc.nextInt();
+        sc.nextLine(); // Clear the newline character
+
+        for (int i = 0; i < customCount; i++) {
+            System.out.println("Zadej symbol č. " + (i + 1) + ":");
+            customSymbols.add(sc.nextLine());
+        }
+
+        // Generovat pole s uživatelskými symboly
+        field.generateField(countOfPairs, customSymbols);
 
         // Určit prvního hráče
         Player firstPlayer = field.getCurrentPlayer();
         System.out.println("Začíná hráč: " + firstPlayer.getUsername());
 
-
         // Zahájit hru
         while (field.gameContinue()) {
             field.showField();
         }
-        if (wc.winner(field.players) == "Nikdo") {
-            System.out.println(wc.winner(field.players) + " nevyhál!");
-        }else {
-            System.out.println(wc.winner(field.players) + " vyhál(a)!");
+
+        String winner = wc.winner(field.players);
+        if (winner.equals("Nikdo")) {
+            System.out.println(winner + " nevyhrál!");
+        } else {
+            System.out.println(winner + " vyhrál(a)!");
         }
     }
 }

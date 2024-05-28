@@ -15,12 +15,8 @@ public class AdderCards {
 
     public String addCard(int cOP) {
         generateField gf = new generateField();
-        Field f3 = new Field();
+        Field f = new Field();
         gf.generateField(cOP);
-        f3.generateField(cOP);
-        for (int i = 0; i < 7; i++) {
-            f3.showField();
-        }
         return "";
     }
 }
