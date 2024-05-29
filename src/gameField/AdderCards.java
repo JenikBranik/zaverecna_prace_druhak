@@ -9,7 +9,6 @@ public class AdderCards {
         System.out.println(">> Zadej počet dvojic, který chceš vygenerovat");
         System.out.print(">> ");
         int countOfPairs = sc.nextInt();
-        addCard(countOfPairs);
         return countOfPairs;
     }
 

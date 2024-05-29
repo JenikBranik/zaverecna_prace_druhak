@@ -24,7 +24,7 @@ public class Console {
      * Načtení mapy příkazů
      */
     public void inicializace() {
-        map.put("showfield", new ShowField());
+        map.put("start", new GameStart());
         map.put("exit", new Exit());
     }
 

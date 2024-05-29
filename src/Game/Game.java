@@ -1,4 +1,7 @@
+package Game;
+
 import Player.Player;
+import gameField.AdderCards;
 import gameField.Field;
 import Player.*;
 
@@ -6,12 +9,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
-    public void Game() {
+    public String Game() {
         Scanner sc = new Scanner(System.in);
         Field field = new Field();
         readJson rJson = new readJson();
         createJson cJson = new createJson();
         WinnerCheck wc = new WinnerCheck();
+        AdderCards ac = new AdderCards();
+        int counOfPairs;
 
         cJson.metoda();
         rJson.readJson();
@@ -20,10 +25,7 @@ public class Game {
             field.addPlayer(rJson.usernames.get(i));
         }
 
-        // Vygenerovat hrací pole
-        System.out.println("Kolik párů chceš vytvořit?");
-        int countOfPairs = sc.nextInt();
-        sc.nextLine(); // Clear the newline character
+        counOfPairs = ac.numberOfPairs();
 
         // Zadat vlastní symboly
         ArrayList<String> customSymbols = new ArrayList<>();
@@ -37,7 +39,7 @@ public class Game {
         }
 
         // Generovat pole s uživatelskými symboly
-        field.generateField(countOfPairs, customSymbols);
+        field.generateField(counOfPairs, customSymbols);
 
         // Určit prvního hráče
         Player firstPlayer = field.getCurrentPlayer();
@@ -54,5 +56,6 @@ public class Game {
         } else {
             System.out.println(winner + " vyhrál(a)!");
         }
+        return "";
     }
 }

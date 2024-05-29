@@ -1,13 +1,13 @@
 package command;
 
-import gameField.Field;
+import Game.Game;
 
-public class ShowField extends Command {
+public class GameStart extends Command {
 
-     Field f = new Field();
+    Game game = new Game();
 
     public String execute() {
-        //f.showField();
+        game.Game();
         return "";
     }
 
