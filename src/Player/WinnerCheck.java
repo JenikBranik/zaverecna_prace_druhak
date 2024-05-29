@@ -3,7 +3,6 @@ package Player;
 import java.util.ArrayList;
 
 public class WinnerCheck {
-    private ArrayList<Integer> score;
 
     public String winner(ArrayList<Player> players) {
         int max = 0;
@@ -13,7 +12,7 @@ public class WinnerCheck {
                 max = players.get(i).getScore();
                 winner = players.get(i).getUsername();
             } else if (players.get(i).getScore() == max) {
-                winner = "Nikdo";
+                winner = "Nobody";
             }
         }
         return winner;

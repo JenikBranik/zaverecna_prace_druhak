@@ -6,14 +6,13 @@ import gameFunctions.guessPosition;
 import Player.*;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Field {
     public static final String space = " ";
     private checkerPairs cp = new checkerPairs();
     private addingPairs aP = new addingPairs();
     private CheckPairOnField CPOF = new CheckPairOnField(aP);
-    private boolean[][] odkrytePozice;
+    private boolean[][] showedPosition;
     private int addCard;
     private String nextSymbol;
     private guessPosition firstGuess = null;
@@ -25,7 +24,7 @@ public class Field {
         aP.setGenPairs(countPairs, customSymbols); // Použijeme novou metodu s uživatelskými symboly
         this.addCard = countPairs * 2;
         int rows = (addCard + 3) / 4;
-        odkrytePozice = new boolean[rows + 1][5];
+        showedPosition = new boolean[rows + 1][5];
     }
 
     public void addPlayer(String name) {
@@ -42,7 +41,7 @@ public class Field {
 
     public boolean gameContinue() {
         if (players.isEmpty()) {
-            System.out.println("Hra nemůže začít bez hráčů.");
+            System.out.println(">> Game cannot start without players.");
             return false;
         } else if (guessedPairs == addCard / 2) {
             return false;
@@ -58,12 +57,12 @@ public class Field {
             int guessedCol = cp.colTG();
             guessPosition currentGuess = new guessPosition(guessedRow, guessedCol);
 
-            if (odkrytePozice[guessedRow][guessedCol]) {
-                System.out.println("Tuto pozici již někdo před tebou uhodl, vyber si jinou");
+            if (showedPosition[guessedRow][guessedCol]) {
+                System.out.println(">> This position has already been guessed by someone before you, choose another one");
                 return;
             }
 
-            odkrytePozice[guessedRow][guessedCol] = true;
+            showedPosition[guessedRow][guessedCol] = true;
 
             if (firstGuess == null) {
                 firstGuess = currentGuess;
@@ -73,15 +72,15 @@ public class Field {
                     for (int i = 0; i < 4; i++) {
                         System.out.println(" ");
                     }
-                    odkrytePozice[firstGuess.getRow()][firstGuess.getColumn()] = false;
-                    odkrytePozice[guessedRow][guessedCol] = false;
+                    showedPosition[firstGuess.getRow()][firstGuess.getColumn()] = false;
+                    showedPosition[guessedRow][guessedCol] = false;
                     nextPlayer();
-                    System.out.println("Na řadě je: " + getCurrentPlayer().getUsername());
+                    System.out.println(">> It's your turn: " + getCurrentPlayer().getUsername());
                 } else {
                     guessedPairs++;
-                    System.out.println(getCurrentPlayer().getUsername() + " spojil správné dvojice!");
+                    System.out.println(getCurrentPlayer().getUsername() + " match the correct pairs!");
                     getCurrentPlayer().setScore(getCurrentPlayer().getScore() + 1);
-                    System.out.println("Tvé skóre je: " + getCurrentPlayer().getScore());
+                    System.out.println(">> "+getCurrentPlayer().getUsername() + " your score is: " + getCurrentPlayer().getScore());
                 }
                 firstGuess = null;
             }
@@ -89,7 +88,7 @@ public class Field {
             showCurrentField();
 
         } catch (Exception e) {
-            System.out.println("Došlo k chybě při zobrazování hracího pole: " + e.getMessage());
+            System.out.println(">> An errror occured while displaying the field.");
         }
     }
 
@@ -112,7 +111,7 @@ public class Field {
             }
             for (int col = 1; col <= 4; col++) {
                 if ((row - 1) * 4 + col > addCard) break;
-                if (odkrytePozice[row][col]) {
+                if (showedPosition[row][col]) {
                     nextSymbol = CPOF.getSymbolAt(new guessPosition(row, col));
                 } else {
                     nextSymbol = "~";

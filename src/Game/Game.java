@@ -1,6 +1,7 @@
 package Game;
 
 import Player.Player;
+import command.console.Console;
 import gameField.AdderCards;
 import gameField.Field;
 import Player.*;
@@ -17,6 +18,7 @@ public class Game {
         WinnerCheck wc = new WinnerCheck();
         AdderCards ac = new AdderCards();
         int counOfPairs;
+        Console console = new Console();
 
         cJson.metoda();
         rJson.readJson();
@@ -29,21 +31,26 @@ public class Game {
 
         // Zadat vlastní symboly
         ArrayList<String> customSymbols = new ArrayList<>();
-        System.out.println("Kolik vlastních symbolů chceš přidat?");
+        System.out.println(">> How many custom symbols do you want to add?");
         int customCount = sc.nextInt();
+        console.saveCommand(String.valueOf(customCount));
+
         sc.nextLine(); // Clear the newline character
 
         for (int i = 0; i < customCount; i++) {
-            System.out.println("Zadej symbol č. " + (i + 1) + ":");
+            System.out.println(">> Add symbol number " + (i + 1) + ":");
             customSymbols.add(sc.nextLine());
+            console.saveCommand(customSymbols.get(i));
         }
+
+        ac.addCard(counOfPairs);
 
         // Generovat pole s uživatelskými symboly
         field.generateField(counOfPairs, customSymbols);
 
         // Určit prvního hráče
         Player firstPlayer = field.getCurrentPlayer();
-        System.out.println("Začíná hráč: " + firstPlayer.getUsername());
+        System.out.println(">> Start player: " + firstPlayer.getUsername());
 
         // Zahájit hru
         while (field.gameContinue()) {
@@ -51,10 +58,10 @@ public class Game {
         }
 
         String winner = wc.winner(field.players);
-        if (winner.equals("Nikdo")) {
-            System.out.println(winner + " nevyhrál!");
+        if (winner.equals("Nobody")) {
+            System.out.println(winner + " won");
         } else {
-            System.out.println(winner + " vyhrál(a)!");
+            System.out.println(winner + " won! Excelent work");
         }
         return "";
     }

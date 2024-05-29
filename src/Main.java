@@ -1,8 +1,9 @@
 import Game.Game;
+import command.console.Console;
 
 public class Main {
     public static void main(String[] args) {
-        Game game = new Game();
-        game.Game();
+        Console console = new Console();
+        console.start();
     }
 }

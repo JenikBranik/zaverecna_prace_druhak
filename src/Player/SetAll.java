@@ -10,7 +10,7 @@ public class SetAll {
 
         Scanner sc = new Scanner(System.in);
         try {
-            System.out.println(">> Jaké chce mít uživatel jméno? ");
+            System.out.println(">> What name does the user want to have? ");
             username = sc.nextLine();
         }catch (Exception e){
             e.printStackTrace();

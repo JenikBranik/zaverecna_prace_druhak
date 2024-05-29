@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 /**
- * Trida na vyvolavani nekterych prikazu
+ * Class for invoke some commands
  */
 public class Console {
     // Kontrola exitu
@@ -21,7 +21,7 @@ public class Console {
     public static String commandHistory = "commandHistory.txt";
 
     /**
-     * Načtení mapy příkazů
+     * Load map of commands
      */
     public void inicializace() {
         map.put("start", new GameStart());
@@ -31,7 +31,7 @@ public class Console {
     private Scanner scanner = new Scanner(System.in);
 
     /**
-     * Hlavní metoda celého procesu
+     * Main method of process
      */
     private void to_do() {
         System.out.print(">>");
@@ -43,15 +43,15 @@ public class Console {
             System.out.println(">> " + map.get(command).execute());
             exit = map.get(command).exit();
         } else {
-            System.out.println(">> Nedefinovany prikaz");
+            System.out.println(">> Undefined command");
         }
     }
 
     /**
-     * Spustí konzoli
+     * Start console
      */
     public void start() {
-        System.out.println("Vítej, zadej nějaký příkaz");
+        System.out.println("Welcome, try some command");
         inicializace();
         try {
             resetFileAfterCommand();
@@ -64,9 +64,9 @@ public class Console {
     }
 
     /**
-     * Uklada jednotlive prikazy zapsane do console
+     * Stores individual commands written in console
      *
-     * @param command Hodnota, ktera se ulozi do souboru
+     * @param command Value, what's gonna save to file
      */
     public void saveCommand(String command) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(commandHistory, true))) {
@@ -80,7 +80,7 @@ public class Console {
     }
 
     /**
-     * Resetuje soubor s historii prikazu po spusteni konzole.
+     * Reset file with history of file into
      */
     private void resetFileAfterCommand() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(commandHistory, false))) {
