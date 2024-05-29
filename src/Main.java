@@ -1,4 +1,3 @@
-import Game.Game;
 import command.console.Console;
 
 public class Main {

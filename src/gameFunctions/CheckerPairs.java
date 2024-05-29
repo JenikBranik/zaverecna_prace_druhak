@@ -5,13 +5,19 @@ import command.console.Console;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class checkerPairs {
-    addingPairs aP = new addingPairs();
-    ArrayList<guessPosition> tG = new ArrayList<>();
+/**
+ * Class working with input values, input values are equals to one position on field
+ */
+
+public class CheckerPairs {
+    ArrayList<GuessPosition> tG = new ArrayList<>();
     Console console = new Console();
 
-
-    public ArrayList<guessPosition> takeGuess() {
+    /**
+     * Ask for input values
+     * @return Position on field
+     */
+    public ArrayList<GuessPosition> takeGuess() {
         Scanner sc = new Scanner(System.in);
         System.out.println(">> Enter the number of the row in which your type is found");
         int row = sc.nextInt();
@@ -19,7 +25,7 @@ public class checkerPairs {
         System.out.println(">> Enter the number of the column in which your type is found");
         int column = sc.nextInt();
         console.saveCommand(String.valueOf(column));
-        guessPosition gP = new guessPosition(row, column);
+        GuessPosition gP = new GuessPosition(row, column);
         tG.add(0, gP);
         return tG;
     }

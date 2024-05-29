@@ -26,6 +26,8 @@ public class Console {
     public void inicializace() {
         map.put("start", new GameStart());
         map.put("exit", new Exit());
+        map.put("help", new Help());
+        map.put("history", new CommandHistory());
     }
 
     private Scanner scanner = new Scanner(System.in);

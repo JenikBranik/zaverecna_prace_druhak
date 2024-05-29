@@ -1,21 +1,16 @@
 package command;
 
-import Game.Game;
-
 /**
- * Class starting the game
+ * Class for help player
  */
-public class GameStart extends Command {
-
-    Game game = new Game();
+public class Help extends Command {
 
     /**
-     * Method to execute the game
-     * @return start the game
+     * Returns input commands
+     * @return commmands
      */
     public String execute() {
-        game.Game();
-        return "";
+        return "start, exit";
     }
 
     /**

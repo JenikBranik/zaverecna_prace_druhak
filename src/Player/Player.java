@@ -1,12 +1,25 @@
 package Player;
 
+/**
+ * Defines player
+ */
+
 public class Player {
     String username;
     int ID;
     int score=0;
 
+    /**
+     * Player for Jackson addon
+     */
     public Player() {
     }
+
+    /**
+     * Constructor of player
+     * @param username username
+     * @param ID ID
+     */
     public Player(String username, int ID) {
         this.username = username;
         this.ID = ID;

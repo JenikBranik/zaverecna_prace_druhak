@@ -2,10 +2,18 @@ package gameFunctions;
 
 import java.util.ArrayList;
 
-public class generateLetters {
+/**
+ * Class generating exact count of letters
+ */
+public class GenerateLetters {
 
     ArrayList<Symbol> generatedPairs = new ArrayList<>();
 
+    /**
+     * Symbols created automatically
+     * @param countOfPairs Count of pairs
+     * @return Letters what are used as Symbol
+     */
     public ArrayList<Symbol> setGeneratedPairs(int countOfPairs) {
         char startChar = 65;
         char endChar = 121;

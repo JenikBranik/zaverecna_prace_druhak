@@ -3,11 +3,20 @@ package gameFunctions;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class addingPairs {
+/**
+ * Adding pairs on positions
+ */
+
+public class AddingPairs {
 
     public ArrayList<Pairs> genPairs = new ArrayList<>();
     public ArrayList<String> Pairs = new ArrayList<>();
 
+    /**
+     * Generate symbols on position, normal generated symbols and custom symbols
+     * @param countOfPairs Count of pairs
+     * @param customSymbols Custom symbol
+     */
     public void setGenPairs(int countOfPairs, ArrayList<String> customSymbols) {
         int pairs = countOfPairs * 2;
         int row;
@@ -15,7 +24,7 @@ public class addingPairs {
         boolean fullRow;
         Random r = new Random();
         int index = 0;
-        generateLetters gL = new generateLetters();
+        GenerateLetters gL = new GenerateLetters();
 
         // Přidáme vlastní symboly
         gL.addCustomSymbols(customSymbols);

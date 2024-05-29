@@ -1,6 +1,15 @@
 package gameField;
 
-public class generateField {
+/**
+ * Class generating the starter field
+ */
+
+public class GenerateField {
+
+    /**
+     * Method on generating field
+     * @param addCard Count of card to generate
+     */
 
     public void generateField(int addCard) {
         addCard += addCard;

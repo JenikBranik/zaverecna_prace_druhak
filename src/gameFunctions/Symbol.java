@@ -1,5 +1,9 @@
 package gameFunctions;
 
+/**
+ * Defines symbols
+ */
+
 public class Symbol {
     String symbol;
     boolean isGuessed;

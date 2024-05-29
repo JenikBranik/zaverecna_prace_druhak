@@ -3,10 +3,17 @@ package Player;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class defines User head in JSON files
+ */
+
 public class Users {
     private List<Player> users;
 
-    // Defaultní konstruktor potřebný pro Jackson
+    /**
+     * Constructor for Jackson addon
+     */
+
     public Users() {
     }
 

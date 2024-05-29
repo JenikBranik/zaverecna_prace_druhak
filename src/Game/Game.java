@@ -9,33 +9,42 @@ import Player.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+/**
+ * Class to run game on
+ */
 public class Game {
+
+    /**
+     * Game launcher
+     * @return game structure
+     */
     public String Game() {
         Scanner sc = new Scanner(System.in);
         Field field = new Field();
         readJson rJson = new readJson();
-        createJson cJson = new createJson();
+        CreateJson cJson = new CreateJson();
         WinnerCheck wc = new WinnerCheck();
         AdderCards ac = new AdderCards();
         int counOfPairs;
         Console console = new Console();
 
-        cJson.metoda();
+        cJson.createJson();
         rJson.readJson();
-        // Přidat hráče do hry
+
         for (int i = 0; i < rJson.usernames.size(); i++) {
             field.addPlayer(rJson.usernames.get(i));
         }
 
         counOfPairs = ac.numberOfPairs();
 
-        // Zadat vlastní symboly
+
         ArrayList<String> customSymbols = new ArrayList<>();
         System.out.println(">> How many custom symbols do you want to add?");
         int customCount = sc.nextInt();
         console.saveCommand(String.valueOf(customCount));
 
-        sc.nextLine(); // Clear the newline character
+        sc.nextLine();
 
         for (int i = 0; i < customCount; i++) {
             System.out.println(">> Add symbol number " + (i + 1) + ":");
@@ -45,14 +54,14 @@ public class Game {
 
         ac.addCard(counOfPairs);
 
-        // Generovat pole s uživatelskými symboly
+
         field.generateField(counOfPairs, customSymbols);
 
-        // Určit prvního hráče
+
         Player firstPlayer = field.getCurrentPlayer();
         System.out.println(">> Start player: " + firstPlayer.getUsername());
 
-        // Zahájit hru
+
         while (field.gameContinue()) {
             field.showField();
         }

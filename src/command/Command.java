@@ -1,7 +1,7 @@
 package command;
 
 /**
- * Pomocna trida pro ostatni commandy
+ * Helpfull class for commands
  */
 
 public abstract class Command {
