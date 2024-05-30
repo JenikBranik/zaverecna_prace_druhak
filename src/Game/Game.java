@@ -20,6 +20,8 @@ public class Game {
      * @return game structure
      */
     public String Game() {
+
+        try {
         Scanner sc = new Scanner(System.in);
         Field field = new Field();
         readJson rJson = new readJson();
@@ -41,7 +43,28 @@ public class Game {
 
         ArrayList<String> customSymbols = new ArrayList<>();
         System.out.println(">> How many custom symbols do you want to add?");
-        int customCount = sc.nextInt();
+        int customCount = 0;
+
+        try {
+            while (customCount == 0) {
+                customCount = sc.nextInt();
+                if (customCount == 0) {
+                    break;
+                }
+                else if (customCount < 0) {
+                    System.out.println(">> You can't add negative number of symbols");
+                    customCount = 0;
+                } else if (customCount>counOfPairs)  {
+                    System.out.println(">> You can't add more than " + counOfPairs + " symbols");
+                    customCount = 0;
+                }
+                System.out.println(">> You can't add negative number of symbols or more than " + counOfPairs + " symbols");
+            }
+        }catch (Exception e) {
+            customCount = 1;
+        }
+
+
         console.saveCommand(String.valueOf(customCount));
 
         sc.nextLine();
@@ -71,6 +94,11 @@ public class Game {
             System.out.println(winner + " won");
         } else {
             System.out.println(winner + " won! Excelent work");
+        }
+        return "";
+    }
+        catch (Exception e) {
+            e.printStackTrace();
         }
         return "";
     }

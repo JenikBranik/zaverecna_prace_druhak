@@ -21,7 +21,7 @@ public class SetAll {
             System.out.println(">> What name does the player"+index+" want to have? ");
             username = sc.nextLine();
         }catch (Exception e){
-            e.printStackTrace();
+            return " ";
         }
         return username;
     }

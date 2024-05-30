@@ -22,12 +22,15 @@ public class CountOfUsers {
         Scanner sc = new Scanner(System.in);
 
         try {
-
             System.out.println(">> How many players gonna play? ");
             countOfUsers = sc.nextInt();
+            if (countOfUsers == 0) {
+                System.out.println(">> Game cannot start without players.");
+                countOfUsers = 1;
+            }
             console.saveCommand(String.valueOf(countOfUsers));
         }catch(Exception e){
-            e.printStackTrace();
+            return countOfUsers = 1;
         }
         return countOfUsers;
     }

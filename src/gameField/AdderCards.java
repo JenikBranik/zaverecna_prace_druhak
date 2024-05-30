@@ -17,12 +17,18 @@ public class AdderCards {
      * @return
      */
     public int numberOfPairs() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println(">> Enter the number of pairs you want to generate");
-        System.out.print(">> ");
-        int countOfPairs = sc.nextInt();
-        console.saveCommand(String.valueOf(countOfPairs));
-        return countOfPairs;
+
+        try {
+            Scanner sc = new Scanner(System.in);
+            System.out.println(">> Enter the number of pairs you want to generate");
+            System.out.print(">> ");
+            int countOfPairs = sc.nextInt();
+            console.saveCommand(String.valueOf(countOfPairs));
+            return countOfPairs;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 1;
     }
 
     /**

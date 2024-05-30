@@ -109,7 +109,7 @@ public class Field {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    for (int i = 0; i < 4; i++) {
+                    for (int i = 0; i < 50; i++) {
                         System.out.println(" ");
                     }
                     showedPosition[firstGuess.getRow()][firstGuess.getColumn()] = false;
@@ -146,8 +146,11 @@ public class Field {
                 System.out.print(column + space.repeat(3));
             }
         }
+
         System.out.println();
         System.out.println();
+
+
 
         for (int row = 1; row <= (addCard + 3) / 4; row++) {
             if (row >= 10) {
