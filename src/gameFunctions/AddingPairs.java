@@ -26,10 +26,8 @@ public class AddingPairs {
         int index = 0;
         GenerateLetters gL = new GenerateLetters();
 
-        // Přidáme vlastní symboly
         gL.addCustomSymbols(customSymbols);
 
-        // Generujeme zbývající páry
         int remainingPairs = countOfPairs - customSymbols.size();
         gL.setGeneratedPairs(remainingPairs);
 

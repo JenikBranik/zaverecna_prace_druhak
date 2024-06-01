@@ -34,7 +34,7 @@ public class GenerateField {
                 System.out.print(row + space.repeat(3));
             }
             for (int col = 1; col <= cols; col++) {
-                if ((row - 1) * cols + col > addCard) break; // Pokud přesáhne počet karet
+                if ((row - 1) * cols + col > addCard) break;
                 System.out.print("~" + space.repeat(3));
             }
 
