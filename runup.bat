@@ -1,1 +1,0 @@
-java -jar C:\Users\janva\IdeaProjects\zaverecna_prace_druhak\out\artifacts\zaverecna_prace_druhak_jar\zaverecna_prace_druhak.jar
